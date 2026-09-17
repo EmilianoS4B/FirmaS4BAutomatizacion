@@ -1,0 +1,22 @@
+{
+  "name": "stripe-coupon-mvp-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "API que habla con Stripe. Única capa que conoce la STRIPE_SECRET_KEY.",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node --env-file=.env src/server.js",
+    "setup:stripe": "node --env-file=.env scripts/setup-stripe.mjs",
+    "verify": "node --env-file=.env scripts/verify-discount.mjs",
+    "verify:testclock": "node --env-file=.env scripts/verify-test-clock.mjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "stripe": "^22.6.2"
+  }
+}
