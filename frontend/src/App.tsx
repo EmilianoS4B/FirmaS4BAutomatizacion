@@ -6,6 +6,7 @@ import { PlanCard } from './components/PlanCard';
 import { CouponForm } from './components/CouponForm';
 import { DiscountSummary } from './components/DiscountSummary';
 import { SuccessPanel } from './components/SuccessPanel';
+import { Shell } from './components/Shell';
 
 /** Lee los parámetros con los que Stripe nos devuelve al frontend. */
 function readReturnParams() {
@@ -122,39 +123,32 @@ export default function App() {
 
   if (result) {
     return (
-      <main className="app">
-        <div className="card">
+      <Shell>
           <SuccessPanel result={result} onReset={handleReset} />
-        </div>
-      </main>
+      </Shell>
     );
   }
 
   if (planError) {
     return (
-      <main className="app">
-        <div className="card">
+      <Shell>
           <p className="message message--error" role="alert">
             {planError}
           </p>
-        </div>
-      </main>
+      </Shell>
     );
   }
 
   if (!plan) {
     return (
-      <main className="app">
-        <div className="card">
+      <Shell>
           <p className="loading">Cargando plan…</p>
-        </div>
-      </main>
+      </Shell>
     );
   }
 
   return (
-    <main className="app">
-      <div className="card">
+    <Shell>
         <PlanCard plan={plan} />
 
         {canceled && (
@@ -186,13 +180,17 @@ export default function App() {
           disabled={isRedirecting}
         >
           {isRedirecting ? 'Redirigiendo a Stripe…' : 'Suscribirme'}
+          {!isRedirecting && (
+            <span className="button__arrow" aria-hidden="true">
+              →
+            </span>
+          )}
         </button>
 
         <p className="legal">
           El pago se procesa en Stripe Checkout. Los datos de tu tarjeta nunca pasan por
           nuestros servidores.
         </p>
-      </div>
-    </main>
+    </Shell>
   );
 }

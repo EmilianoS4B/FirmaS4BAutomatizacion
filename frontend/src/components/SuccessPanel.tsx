@@ -26,7 +26,9 @@ export function SuccessPanel({ result, onReset }: Props) {
   return (
     <section className="success" aria-live="polite">
       <div className="success__badge" aria-hidden="true">
-        ✓
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12.5l4.5 4.5L19 7.5" />
+        </svg>
       </div>
 
       <h2 className="success__title">Suscripción creada correctamente.</h2>
